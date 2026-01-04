@@ -1,3 +1,29 @@
-.vscode
-*.jar
-src/*.exe
+.vscode/
+# Build artifacts
+build/
+*.class
+*.exe
+*.out
+*.o
+
+# Node
+node_modules/
+**/node_modules/
+
+# Python
+Python/.venv/
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# IDE/editor
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
