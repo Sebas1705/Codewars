@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Solutions {
+public class ParseIntReload {
     public static long parseInt(String number){
         Map<String, Long> units = Map.of(
             "zero",0L,"one",1L,"two",2L,"three",3L,"four",4L,

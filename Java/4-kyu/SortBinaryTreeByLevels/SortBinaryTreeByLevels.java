@@ -2,7 +2,7 @@ import java.util.*;
 
 class Tree { int value; Tree left, right; Tree(int v){value=v;} }
 
-public class Solutions {
+public class SortBinaryTreeByLevels {
     public static int[] treeByLevels(Tree tree){
         if (tree==null) return new int[0];
         Deque<Tree> q = new ArrayDeque<>();

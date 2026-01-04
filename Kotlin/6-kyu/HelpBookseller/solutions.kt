@@ -1,3 +1,5 @@
+package p6_kyu_helpbookseller
+
 fun stockSummary(books: Array<String>, categories: Array<String>): String {
     if (books.isEmpty() || categories.isEmpty()) return ""
 

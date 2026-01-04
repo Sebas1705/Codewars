@@ -1,3 +1,5 @@
+package p6_kyu_ipvalidation
+
 fun isValidIp(addr: String?): Boolean {
     if (addr == null) return false
     if (addr.any { it.isWhitespace() }) return false

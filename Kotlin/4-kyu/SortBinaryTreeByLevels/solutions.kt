@@ -1,3 +1,5 @@
+package p4_kyu_sortbinarytreebylevels
+
 data class Tree(var value: Int, var left: Tree? = null, var right: Tree? = null)
 
 fun treeByLevels(tree: Tree?): IntArray {

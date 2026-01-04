@@ -1,3 +1,5 @@
+package p7_kyu_twooldestages
+
 fun twoOldestAges(ages: IntArray): IntArray {
     if (ages.size < 2) return intArrayOf()
     var oldest = Int.MIN_VALUE

@@ -1,4 +1,4 @@
-public class Solutions {
+public class MaximumSubarraySum {
     public static int maxSequence(int[] array){
         int maxSoFar=0, maxEndingHere=0;
         for (int v: array){

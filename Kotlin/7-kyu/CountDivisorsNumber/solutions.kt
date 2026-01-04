@@ -1,3 +1,5 @@
+package p7_kyu_countdivisorsnumber
+
 fun divisors(n: Long): Int {
     var count = 0
     val limit = kotlin.math.sqrt(n.toDouble()).toLong()

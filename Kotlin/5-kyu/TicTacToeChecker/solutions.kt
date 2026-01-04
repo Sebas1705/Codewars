@@ -1,3 +1,5 @@
+package p5_kyu_tictactoechecker
+
 const val NOT_FINISHED = -1
 const val DRAW = 0
 const val X_WON = 1

@@ -1,3 +1,5 @@
+package p4_kyu_countingchangecombinations
+
 fun countChange(money: Int, nCoins: Int, coins: IntArray): Int {
     if (money == 0) return 1
     if (money < 0 || nCoins == 0) return 0

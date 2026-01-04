@@ -32,15 +32,23 @@ fi
 # Prepare Node/TypeScript envs
 if [ -f "TypeScript/package.json" ] && [ ! -d "TypeScript/node_modules" ]; then
   echo "Installing TypeScript dependencies" | tee -a "$report_file"
-  (cd TypeScript && npm ci --no-audit --no-fund) >> "$report_file" 2>&1 || true
+  if [ -f "TypeScript/package-lock.json" ]; then
+    (cd TypeScript && npm ci --no-audit --no-fund) >> "$report_file" 2>&1 || true
+  else
+    (cd TypeScript && npm install --no-audit --no-fund) >> "$report_file" 2>&1 || true
+  fi
 fi
 if [ -f "JavaScript/package.json" ] && [ ! -d "JavaScript/node_modules" ]; then
   echo "Installing JavaScript dependencies" | tee -a "$report_file"
-  (cd JavaScript && npm ci --no-audit --no-fund) >> "$report_file" 2>&1 || true
+  if [ -f "JavaScript/package-lock.json" ]; then
+    (cd JavaScript && npm ci --no-audit --no-fund) >> "$report_file" 2>&1 || true
+  else
+    (cd JavaScript && npm install --no-audit --no-fund) >> "$report_file" 2>&1 || true
+  fi
 fi
 
 # Run each runner if present
-if [ -x "Python/run_tests.sh" ]; then
+if [ -f "Python/run_tests.sh" ]; then
   run_and_log Python bash Python/run_tests.sh
 fi
 if [ -x "TypeScript/run_tests.sh" ]; then
@@ -52,7 +60,14 @@ if [ -x "TypeScript/run_tests.sh" ]; then
   run_and_log TypeScript bash TypeScript/run_tests.sh
 fi
 if [ -d "JavaScript" ]; then
-  run_and_log JavaScript node -e "const fs=require('fs'),p=require('path'); function test(f){try{const m=require(f); if(m.add&&m.add('123','456')!=='579')throw 1; if((m.int32ToIp||m.int32_to_ip)&&((m.int32ToIp||m.int32_to_ip)(2149583361)!=='128.32.10.1')) throw 1;}catch(e){console.error('JS FAIL',f,e); process.exitCode=2}}; function walk(d){for(const x of fs.readdirSync(d)){const fp=p.join(d,x); if(fs.statSync(fp).isDirectory()) walk(fp); else if(x==='Solutions.js') test(fp);} } walk('JavaScript'); console.log('JS runner done');"
+  # Prefer centralized runner to avoid shell quoting issues
+  if [ -f "js_inline_runner.js" ]; then
+    run_and_log JavaScript node js_inline_runner.js
+  elif [ -f "JavaScript/test_runner.js" ]; then
+    run_and_log JavaScript node JavaScript/test_runner.js
+  else
+    echo "JavaScript: no runner found" | tee -a "$report_file"
+  fi
 fi
 if [ -x "C/run_tests.sh" ]; then
   run_and_log C bash C/run_tests.sh
@@ -71,38 +86,44 @@ missing=0
 for lang in Python JavaScript TypeScript Java C Kotlin; do
   if [ -d "$lang" ]; then
     echo "Checking $lang..." | tee -a "$report_file"
-    find "$lang" -mindepth 2 -maxdepth 3 -type d | while read -r kata; do
+    while IFS= read -r kata; do
       # skip template
       if echo "$kata" | grep -q "template"; then continue; fi
-      # heuristics for test presence
-      has_test=0
-      case "$lang" in
-        Python)
-          # global tests under Python/tests or per-kata tests
-          if [ -d "Python/tests" ]; then has_test=1; fi
-          ;;
-        JavaScript)
-          if ls "$kata"/*test*.js >/dev/null 2>&1 || [ -d "$kata/__tests__" ]; then has_test=1; fi
-          ;;
-        TypeScript)
-          if ls "$kata"/*test*.ts >/dev/null 2>&1 || ls "$kata"/*spec*.ts >/dev/null 2>&1; then has_test=1; fi
-          ;;
-        Java)
-          if ls "$kata"/*Test*.java >/dev/null 2>&1 || ls "$kata"/*Tests*.java >/dev/null 2>&1; then has_test=1; fi
-          ;;
-        C)
-          # presence of solutions.c counts as source; check for tests folder
-          if [ -d "$kata/tests" ] || ls "$kata"/*test*.c >/dev/null 2>&1; then has_test=1; fi
-          ;;
-        Kotlin)
-          if ls "$kata"/*Test*.kt >/dev/null 2>&1; then has_test=1; fi
-          ;;
-      esac
-      if [ "$has_test" -eq 0 ]; then
-        echo "MISSING TEST: $lang/$kata" | tee -a "$report_file"
-        missing=$((missing+1))
-      fi
-    done
+        # heuristics for test presence
+        has_test=0
+        # strip leading language prefix from kata path for nicer output and build lookups
+        kata_rel=${kata#${lang}/}
+        case "$lang" in
+          Python)
+            if [ -d "Python/tests" ] || find "$kata" -type f -name '*test*.py' -print -quit | grep -q .; then has_test=1; fi
+            ;;
+          JavaScript)
+            if find "$kata" -type f \( -name '*test*.js' -o -name '*spec*.js' \) -print -quit | grep -q .; then has_test=1; fi
+            # also accept compiled TS tests under build/ts
+            if [ -f "build/ts/$kata_rel/tests/test.js" ] || [ -d "build/ts/$kata_rel/tests" ]; then has_test=1; fi
+            ;;
+          TypeScript)
+            if find "$kata" -type f \( -name '*test*.ts' -o -name '*spec*.ts' \) -print -quit | grep -q .; then has_test=1; fi
+            if [ -d "build/ts/$kata_rel/tests" ] || [ -f "build/ts/$kata_rel/Solutions.js" ]; then has_test=1; fi
+            ;;
+          Java)
+            if find "$kata" -type f -name '*Test*.java' -print -quit | grep -q .; then has_test=1; fi
+            ;;
+          C)
+            if [ -d "$kata/tests" ] || [ -d "$kata/src/tests" ] || find "$kata" -type f -name '*test*.c' -print -quit | grep -q .; then has_test=1; fi
+            # built C binaries created by C runner
+            bin_name=$(echo "$kata" | sed 's|/|_|g').exe
+            if [ -f "build/c_tests/$bin_name" ]; then has_test=1; fi
+            ;;
+          Kotlin)
+            if find "$kata" -type f -name '*Test*.kt' -print -quit | grep -q .; then has_test=1; fi
+            ;;
+        esac
+        if [ "$has_test" -eq 0 ]; then
+          echo "MISSING TEST: $lang/$kata_rel" | tee -a "$report_file"
+          missing=$((missing+1))
+        fi
+    done < <(find "$lang" -mindepth 2 -maxdepth 2 -type d -not -path "*/node_modules/*" -not -path "*/node_modules")
   fi
 done
 

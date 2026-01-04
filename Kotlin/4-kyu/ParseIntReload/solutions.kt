@@ -1,3 +1,5 @@
+package p4_kyu_parseintreload
+
 fun parseInt(number: String): Long {
     val units = mapOf(
         "zero" to 0L, "one" to 1L, "two" to 2L, "three" to 3L, "four" to 4L,

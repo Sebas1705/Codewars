@@ -1,3 +1,5 @@
+package p5_kyu_maximumsubarraysum
+
 fun maxSequence(array: IntArray): Int {
     var maxSoFar = 0
     var maxEndingHere = 0

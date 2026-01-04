@@ -1,3 +1,5 @@
+package p4_kyu_matrixdeterminant
+
 fun determinant(matrix: Array<IntArray>): Int {
     val size = matrix.size
     if (size == 1) return matrix[0][0]

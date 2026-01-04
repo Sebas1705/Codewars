@@ -1,3 +1,5 @@
+package p5_kyu_countipaddresses
+
 fun parseIp(ip: String): Long {
     val parts = ip.split('.').map { it.toLong() }
     return (parts[0] shl 24) + (parts[1] shl 16) + (parts[2] shl 8) + parts[3]

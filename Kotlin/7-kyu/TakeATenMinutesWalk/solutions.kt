@@ -1,3 +1,5 @@
+package p7_kyu_takeatenminuteswalk
+
 fun isValidWalk(walk: String): Boolean {
     if (walk.length != 10) return false
     var x = 0

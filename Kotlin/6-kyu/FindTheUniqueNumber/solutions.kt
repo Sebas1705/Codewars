@@ -1,3 +1,5 @@
+package p6_kyu_findtheuniquenumber
+
 fun findUniq(nums: FloatArray): Float {
     val n = nums.size
     if (n == 0) return 0.0f

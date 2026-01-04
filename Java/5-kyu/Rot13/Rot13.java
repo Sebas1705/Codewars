@@ -1,4 +1,4 @@
-public class Solutions {
+public class Rot13 {
     public static String rot13(String src){
         StringBuilder sb = new StringBuilder();
         for (char c: src.toCharArray()){

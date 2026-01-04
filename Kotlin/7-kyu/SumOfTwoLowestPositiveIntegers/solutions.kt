@@ -1,3 +1,5 @@
+package p7_kyu_sumoftwolowestpositiveintegers
+
 fun sumTwoSmallestNumbers(numbers: IntArray): Long {
     var min1 = Int.MAX_VALUE
     var min2 = Int.MAX_VALUE

@@ -1,3 +1,5 @@
+package p5_kyu_int32toipv4
+
 fun uint32ToIp(number: Long): String {
     val b1 = (number shr 24) and 0xFF
     val b2 = (number shr 16) and 0xFF

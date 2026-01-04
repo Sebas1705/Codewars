@@ -1,4 +1,4 @@
-public class Solutions {
+public class TicTacToeChecker {
     public static final int NOT_FINISHED = -1, DRAW = 0, X_WON = 1, O_WON = 2;
     public static final int EMPTY=0, X=1, O=2;
 
