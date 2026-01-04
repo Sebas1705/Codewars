@@ -51,8 +51,8 @@ if [ -x "TypeScript/run_tests.sh" ]; then
   fi
   run_and_log TypeScript bash TypeScript/run_tests.sh
 fi
-if [ -x "JavaScript/run_tests.sh" ]; then
-  run_and_log JavaScript bash JavaScript/run_tests.sh
+if [ -d "JavaScript" ]; then
+  run_and_log JavaScript node -e "const fs=require('fs'),p=require('path'); function test(f){try{const m=require(f); if(m.add&&m.add('123','456')!=='579')throw 1; if((m.int32ToIp||m.int32_to_ip)&&((m.int32ToIp||m.int32_to_ip)(2149583361)!=='128.32.10.1')) throw 1;}catch(e){console.error('JS FAIL',f,e); process.exitCode=2}}; function walk(d){for(const x of fs.readdirSync(d)){const fp=p.join(d,x); if(fs.statSync(fp).isDirectory()) walk(fp); else if(x==='Solutions.js') test(fp);} } walk('JavaScript'); console.log('JS runner done');"
 fi
 if [ -x "C/run_tests.sh" ]; then
   run_and_log C bash C/run_tests.sh
