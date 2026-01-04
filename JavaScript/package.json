@@ -1,0 +1,6 @@
+{
+  "name": "codewars-javascript",
+  "version": "1.0.0",
+  "description": "Encapsulated JavaScript environment",
+  "private": true
+}

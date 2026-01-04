@@ -1,0 +1,20 @@
+[
+  { "kyu": "4-kyu", "kata": "AddingBigNumbers", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/4-kyu/AddingBigNumbers/title.md" },
+  { "kyu": "4-kyu", "kata": "CountingChangeCombinations", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/4-kyu/CountingChangeCombinations/title.md" },
+  { "kyu": "4-kyu", "kata": "MatrixDeterminant", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/4-kyu/MatrixDeterminant/title.md" },
+  { "kyu": "4-kyu", "kata": "ParseIntReload", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/4-kyu/ParseIntReload/title.md" },
+  { "kyu": "4-kyu", "kata": "SortBinaryTreeByLevels", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/4-kyu/SortBinaryTreeByLevels/title.md" },
+  { "kyu": "5-kyu", "kata": "TicTacToeChecker", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/5-kyu/TicTacToeChecker/title.md" },
+  { "kyu": "5-kyu", "kata": "Rot13", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/5-kyu/Rot13/title.md" },
+  { "kyu": "5-kyu", "kata": "Int32ToIPv4", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/5-kyu/Int32ToIPv4/title.md" },
+  { "kyu": "5-kyu", "kata": "MaximumSubarraySum", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/5-kyu/MaximumSubarraySum/title.md" },
+  { "kyu": "5-kyu", "kata": "CountIPAddresses", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/5-kyu/CountIPAddresses/title.md" },
+  { "kyu": "6-kyu", "kata": "FindTheUniqueNumber", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/6-kyu/FindTheUniqueNumber/title.md" },
+  { "kyu": "6-kyu", "kata": "HelpBookseller", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/6-kyu/HelpBookseller/title.md" },
+  { "kyu": "6-kyu", "kata": "IPValidation", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/6-kyu/IPValidation/title.md" },
+  { "kyu": "7-kyu", "kata": "CountDivisorsNumber", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/7-kyu/CountDivisorsNumber/title.md" },
+  { "kyu": "7-kyu", "kata": "SumOfTwoLowestPositiveIntegers", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/7-kyu/SumOfTwoLowestPositiveIntegers/title.md" },
+  { "kyu": "7-kyu", "kata": "TakeATenMinutesWalk", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/7-kyu/TakeATenMinutesWalk/title.md" },
+  { "kyu": "7-kyu", "kata": "TwoOldestAges", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/7-kyu/TwoOldestAges/title.md" },
+  { "kyu": "template", "kata": "template", "languages": ["C", "Kotlin", "Java", "JavaScript", "TypeScript", "Python"], "title_path": "docs/template/title.md" }
+]
