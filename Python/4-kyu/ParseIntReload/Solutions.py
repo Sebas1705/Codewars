@@ -2,7 +2,6 @@
 ParseIntReload
 Title: see docs/4-kyu/ParseIntReload/title.md
 
-Placeholder Python solution module. Implement the function(s) required by the kata below.
 """
 
 def parse_int_reload(text: str) -> int:
