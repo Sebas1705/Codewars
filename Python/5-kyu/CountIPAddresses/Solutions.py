@@ -2,7 +2,6 @@
 CountIPAddresses
 Title: see docs/5-kyu/CountIPAddresses/title.md
 
-Placeholder Python solution module. Implement the function(s) required by the kata below.
 """
 
 def count_ip_addresses(start: str, end: str) -> int:
