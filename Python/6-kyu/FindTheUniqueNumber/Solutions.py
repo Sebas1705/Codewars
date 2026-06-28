@@ -2,7 +2,6 @@
 FindTheUniqueNumber
 Title: see docs/6-kyu/FindTheUniqueNumber/title.md
 
-Placeholder Python solution module. Implement the function(s) required by the kata below.
 """
 
 from typing import List
