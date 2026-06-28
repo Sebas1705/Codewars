@@ -2,7 +2,6 @@
 CountDivisorsNumber
 Title: see docs/7-kyu/CountDivisorsNumber/title.md
 
-Placeholder Python solution module. Implement the function(s) required by the kata below.
 """
 
 def count_divisors(n: int) -> int:
