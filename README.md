@@ -2,24 +2,43 @@
 
 # Codewars Multi‑Language Katas
 
-Practice algorithmic katas in multiple languages with a unified, test‑driven workflow.
+**17 katas** solved in **6 languages** — same problem, different solutions.
+
+`C` · `Java` · `Kotlin` · `JavaScript` · `TypeScript` · `Python`
 
 </div>
 
 ---
 
-## Overview
+## What this is
 
-This repository contains solutions and tests for a curated set of Codewars katas, implemented in several languages:
+Each kata in this repo is solved in all 6 languages using a consistent structure and test suite. The goal is not just to solve the problem — it's to see how different languages express the same algorithm: how Kotlin's functional style differs from C's pointer arithmetic, or how Python's readability trades off against TypeScript's type safety.
 
-- C
-- Java
-- Kotlin
-- JavaScript
-- TypeScript
-- Python
+Katas range from **4-kyu** (hard — recursion, dynamic programming, data structures) to **7-kyu** (easier — string/number manipulation). Every solution has tests.
 
-Katas are organised by difficulty (**4‑kyu** to **7‑kyu**) and share a common problem index under `docs/` so that every language mirrors the same set of exercises.
+---
+
+## Kata Catalogue
+
+| Difficulty | Kata | Topic | Description |
+|---|---|---|---|
+| 4-kyu | AddingBigNumbers | String arithmetic | Sum arbitrarily large numbers given as strings — without BigInt |
+| 4-kyu | CountingChangeCombinations | Dynamic programming | Count the number of ways to make change for a given amount |
+| 4-kyu | MatrixDeterminant | Recursion / linear algebra | Compute the determinant of an N×N matrix using cofactor expansion |
+| 4-kyu | ParseIntReload | String parsing | Parse integer from its English word representation ("one hundred" → 100) |
+| 4-kyu | SortBinaryTreeByLevels | BFS / trees | Level-order traversal of a binary tree, returning values grouped by depth |
+| 5-kyu | CountIPAddresses | Bit manipulation | Count valid IPv4 addresses between two given addresses |
+| 5-kyu | Int32ToIPv4 | Bit manipulation | Convert a 32-bit integer to its dotted IPv4 string representation |
+| 5-kyu | MaximumSubarraySum | Dynamic programming | Kadane's algorithm — find the maximum sum of a contiguous subarray |
+| 5-kyu | Rot13 | String / ciphers | Apply ROT13 Caesar cipher to a string |
+| 5-kyu | TicTacToeChecker | 2D arrays / game logic | Determine the winner (or lack thereof) of a Tic-Tac-Toe board |
+| 6-kyu | FindTheUniqueNumber | Hashing / XOR | Find the single element in an array where all others appear twice |
+| 6-kyu | HelpBookseller | String processing | Aggregate and format stock data from a space-separated string |
+| 6-kyu | IPValidation | Regex / parsing | Validate whether a string is a valid IPv4 address |
+| 7-kyu | CountDivisorsNumber | Number theory | Count the number of divisors of an integer |
+| 7-kyu | SumOfTwoLowestPositiveIntegers | Sorting | Find and sum the two smallest positive integers in an array |
+| 7-kyu | TakeATenMinutesWalk | Arrays / direction | Verify that a walk described as directions returns to the origin in exactly 10 min |
+| 7-kyu | TwoOldestAges | Sorting | Return the two largest values from an array of ages |
 
 ---
 

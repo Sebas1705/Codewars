@@ -5,6 +5,7 @@ build/
 *.exe
 *.out
 *.o
+*.jar
 
 # Node
 node_modules/
