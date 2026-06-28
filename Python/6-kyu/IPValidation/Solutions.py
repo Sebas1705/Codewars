@@ -2,7 +2,6 @@
 IPValidation
 Title: see docs/6-kyu/IPValidation/title.md
 
-Placeholder Python solution module. Implement the function(s) required by the kata below.
 """
 
 def is_valid_ip(ip: str) -> bool:
