@@ -2,7 +2,6 @@
 MaximumSubarraySum
 Title: see docs/5-kyu/MaximumSubarraySum/title.md
 
-Placeholder Python solution module. Implement the function(s) required by the kata below.
 """
 
 from typing import List
