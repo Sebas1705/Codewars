@@ -2,7 +2,6 @@
 CountingChangeCombinations
 Title: see docs/4-kyu/CountingChangeCombinations/title.md
 
-Placeholder Python solution module. Implement the function(s) required by the kata below.
 """
 
 def count_change_combinations(amount: int, coins: list[int]) -> int:
