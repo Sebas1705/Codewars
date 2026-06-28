@@ -2,7 +2,6 @@
 TakeATenMinutesWalk
 Title: see docs/7-kyu/TakeATenMinutesWalk/title.md
 
-Placeholder Python solution module. Implement the function(s) required by the kata below.
 """
 
 from typing import List
