@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  c:
+    name: C
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: gcc --version
+      - name: Compile and run every kata
+        run: bash C/run_tests.sh
+
+  java:
+    name: Java
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Compile and run every *Test class
+        run: bash Java/run_tests.sh
+
+  kotlin:
+    name: Kotlin
+    runs-on: ubuntu-latest
+    env:
+      KOTLIN_VERSION: 2.1.21
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Install the Kotlin compiler
+        run: |
+          curl -fsSL -o kotlin-compiler.zip \
+            "https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip"
+          unzip -q kotlin-compiler.zip -d "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/kotlinc/bin" >> "$GITHUB_PATH"
+      - name: Compile and run every SolutionsTest
+        run: bash Kotlin/run_tests.sh
+
+  javascript:
+    name: JavaScript
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Run the JavaScript test runner
+        run: node JavaScript/test_runner.js
+
+  typescript:
+    name: TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: TypeScript/package-lock.json
+      - name: Install
+        run: npm ci --no-audit --no-fund
+        working-directory: TypeScript
+      - name: Compile to build/ts
+        run: npx tsc -p .
+        working-directory: TypeScript
+      - name: Run the TypeScript test runner
+        run: bash TypeScript/run_tests.sh
+
+  python:
+    name: Python
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: Python/requirements.txt
+      - name: Install
+        run: python -m pip install -q -r Python/requirements.txt
+      - name: Run pytest
+        run: bash Python/run_tests.sh

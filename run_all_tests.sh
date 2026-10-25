@@ -26,7 +26,11 @@ if [ ! -d "Python/.venv" ]; then
 fi
 if [ -f "Python/requirements.txt" ]; then
   echo "Installing Python requirements..." | tee -a "$report_file"
-  Python/.venv/Scripts/python.exe -m pip install -q -r Python/requirements.txt
+  if [ -x "Python/.venv/bin/python" ]; then
+    Python/.venv/bin/python -m pip install -q -r Python/requirements.txt
+  else
+    Python/.venv/Scripts/python.exe -m pip install -q -r Python/requirements.txt
+  fi
 fi
 
 # Prepare Node/TypeScript envs
@@ -52,10 +56,10 @@ if [ -f "Python/run_tests.sh" ]; then
   run_and_log Python bash Python/run_tests.sh
 fi
 if [ -x "TypeScript/run_tests.sh" ]; then
-  # ensure TS compiled if tsc present
+  # compile TypeScript (sources and tests) into build/ts before running
   if [ -f "TypeScript/node_modules/.bin/tsc" ]; then
     echo "Compiling TypeScript sources" | tee -a "$report_file"
-    (cd TypeScript && node node_modules/.bin/tsc --project . || node node_modules/.bin/tsc) >> "$report_file" 2>&1 || true
+    (cd TypeScript && npx tsc -p .) >> "$report_file" 2>&1 || echo "TypeScript: compile FAILED (see $report_file)" | tee -a "$report_file"
   fi
   run_and_log TypeScript bash TypeScript/run_tests.sh
 fi
