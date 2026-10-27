@@ -1,0 +1,11 @@
+{
+  "accent": "#B1361E",
+  "icon_alt": {
+    "en": "Codewars Katas icon: the letters CW in white on a brick-red rounded square",
+    "es": "Icono de Codewars Katas: las letras CW en blanco sobre un cuadrado redondeado rojo ladrillo"
+  },
+  "banner_alt": {
+    "en": "Codewars Katas banner: the monogram icon, the tagline \"Codewars katas solved in six languages\" and the stack (C, Java, Kotlin, JavaScript, TypeScript)",
+    "es": "Banner de Codewars Katas: el icono con monograma, el lema \"Katas de Codewars resueltos en seis lenguajes\" y el stack (C, Java, Kotlin, JavaScript, TypeScript)"
+  }
+}
